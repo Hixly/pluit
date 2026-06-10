@@ -8,7 +8,7 @@ interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
   ({ className, variant = 'primary', children, ...props }, ref) => {
     const variants = {
-      primary: 'bg-pluit-blue text-pluit-bg border-pluit-cyan hover:bg-pluit-cyan',
+      primary: 'bg-pluit-blue text-black border-pluit-cyan hover:bg-pluit-cyan',
       secondary: 'bg-transparent text-pluit-blue border-pluit-blue hover:bg-pluit-panel',
       danger: 'bg-red-600 text-white border-red-400 hover:bg-red-500',
     }

@@ -2,6 +2,7 @@
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { cn } from '@/lib/utils'
+import { PixelCloudLogo } from '@/components/ui/pixel-cloud-logo'
 
 interface UploadZoneProps {
   folderId: string | null
@@ -74,8 +75,8 @@ export function UploadZone({ folderId, onUploadComplete }: UploadZoneProps) {
         )}
       >
         <input {...getInputProps()} />
-        <div className="text-4xl mb-3">
-          {isDragActive ? '🌧' : '☁️'}
+        <div className="mb-3 flex justify-center">
+          <PixelCloudLogo size={64} animated={isDragActive} />
         </div>
         <p className="font-pixel text-xs text-pluit-blue">
           {isDragActive ? 'DROP TO UPLOAD' : 'DRAG FILES HERE'}

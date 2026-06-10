@@ -6,7 +6,7 @@ export function PixelCard({ className, children, ...props }: HTMLAttributes<HTML
     <div
       className={cn(
         'bg-pluit-panel border-2 border-pluit-blue',
-        'shadow-[4px_4px_0px_rgba(0,191,255,0.2)]',
+        'shadow-[4px_4px_0px_rgba(137,207,240,0.2)]',
         className
       )}
       {...props}

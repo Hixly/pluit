@@ -22,11 +22,9 @@ async function fetchVault(folderId: string | null, showTrash: boolean) {
     }
   }
 
-  const foldersQuery = supabase
-    .from('folders')
-    .select('*')
-    .eq('parent_folder_id', folderId ?? null)
-    .order('name')
+  const foldersQuery = folderId
+    ? supabase.from('folders').select('*').eq('parent_folder_id', folderId).order('name')
+    : supabase.from('folders').select('*').is('parent_folder_id', null).order('name')
 
   const [{ data: files }, { data: folders }] = await Promise.all([
     filesQuery,

@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'pluit-bg': '#0a0e1a',
-        'pluit-panel': '#111827',
-        'pluit-blue': '#00bfff',
-        'pluit-cyan': '#00ffff',
-        'pluit-gold': '#ffd700',
+        'pluit-bg': '#000000',
+        'pluit-panel': '#111111',
+        'pluit-blue': '#89CFF0',
+        'pluit-cyan': '#b8dfff',
+        'pluit-gold': '#ffffff',
       },
       fontFamily: {
         pixel: ['"Press Start 2P"', 'monospace'],
-        sans: ['Inter', 'sans-serif'],
+        sans: ['var(--font-sans)', 'sans-serif'],
       },
     },
   },

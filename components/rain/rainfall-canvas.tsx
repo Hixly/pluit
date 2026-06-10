@@ -14,36 +14,40 @@ export function RainfallCanvas({ opacity = 0.25 }: RainfallCanvasProps) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
     const PIXEL_SIZE = 2
     const PIXEL_GAP = 8
     const SPEED = 6
-    const cols = Math.ceil(window.innerWidth / PIXEL_GAP)
-    const drops: number[] = Array.from({ length: cols }, () =>
-      Math.random() * -canvas.height
-    )
 
+    let drops: number[] = []
     let animId: number
+
+    const init = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      const cols = Math.ceil(window.innerWidth / PIXEL_GAP) + 2
+      // keep existing drops, only add new ones if screen got wider
+      while (drops.length < cols) {
+        drops.push(Math.random() * -canvas.height)
+      }
+      drops = drops.slice(0, cols)
+    }
+
+    init()
+    window.addEventListener('resize', init)
 
     function draw() {
       if (!ctx || !canvas) return
-      ctx.fillStyle = 'rgba(10, 14, 26, 0.15)'
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       for (let i = 0; i < drops.length; i++) {
         const x = i * PIXEL_GAP
         const y = drops[i]
 
-        ctx.fillStyle = '#00ffff'
+        ctx.fillStyle = '#ffffff'
         ctx.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE)
 
-        ctx.fillStyle = '#00bfff'
+        ctx.fillStyle = '#89CFF0'
         ctx.fillRect(x, y + PIXEL_SIZE * 2, PIXEL_SIZE, PIXEL_SIZE * 3)
 
         if (drops[i] > canvas.height && Math.random() > 0.975) {
@@ -59,14 +63,14 @@ export function RainfallCanvas({ opacity = 0.25 }: RainfallCanvasProps) {
 
     return () => {
       cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
+      window.removeEventListener('resize', init)
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
+      className="fixed inset-0 w-screen h-screen pointer-events-none"
       style={{ zIndex: 0, opacity }}
     />
   )
