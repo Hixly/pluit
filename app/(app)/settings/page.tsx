@@ -10,13 +10,6 @@ import { formatBytes } from '@/lib/utils'
 import { PLAN_AI_CALLS_LIMIT } from '@/types'
 import type { Profile } from '@/types'
 
-const PLANS = [
-  { name: 'FREE',     storage: '5 GB',   price: '$0/mo',  ai: '10 calls/mo' },
-  { name: 'PERSONAL', storage: '50 GB',  price: '$5/mo',  ai: 'Unlimited' },
-  { name: 'PRO',      storage: '200 GB', price: '$12/mo', ai: 'Unlimited' },
-  { name: 'BUSINESS', storage: '1 TB',   price: '$30/mo', ai: 'Unlimited' },
-]
-
 export default function SettingsPage() {
   const router = useRouter()
   const supabase = createClient()
@@ -90,7 +83,7 @@ export default function SettingsPage() {
             {aiLimit === null ? 'UNLIMITED ON YOUR PLAN' : `${aiLimit - aiUsed} CALLS REMAINING`}
           </p>
           {aiLimit !== null && aiUsed >= aiLimit && (
-            <p className="font-pixel text-xs text-red-400">⚠ LIMIT REACHED — UPGRADE TO CONTINUE</p>
+            <p className="font-pixel text-xs text-red-400">⚠ MONTHLY LIMIT REACHED — RESETS NEXT MONTH</p>
           )}
         </PixelCard>
       </div>
@@ -105,30 +98,17 @@ export default function SettingsPage() {
         </div>
       </PixelCard>
 
-      {/* Row 3: Plans full width */}
+      {/* Row 3: Free storage note full width */}
       <PixelCard className="p-5 space-y-3">
-        <h2 className="font-pixel text-xs text-pluit-blue border-b border-pluit-blue/20 pb-2">PLANS</h2>
-        <div className="grid grid-cols-4 gap-3">
-          {PLANS.map(p => (
-            <div
-              key={p.name}
-              className={`p-3 border-2 space-y-1 ${
-                p.name.toLowerCase() === tier
-                  ? 'border-pluit-blue bg-pluit-blue/10'
-                  : 'border-pluit-blue/20'
-              }`}
-            >
-              <div className="flex items-center gap-1">
-                {p.name.toLowerCase() === tier && <span className="font-pixel text-xs text-pluit-blue">&gt;</span>}
-                <span className="font-pixel text-xs text-white">{p.name}</span>
-              </div>
-              <div className="font-pixel text-xs text-pluit-blue">{p.storage}</div>
-              <div className="font-pixel text-xs text-pluit-blue/50">{p.ai}</div>
-              <div className="font-pixel text-xs text-pluit-blue/40">{p.price}</div>
-            </div>
-          ))}
+        <h2 className="font-pixel text-xs text-pluit-blue border-b border-pluit-blue/20 pb-2">YOUR PLAN</h2>
+        <div className="flex items-center gap-2">
+          <span className="font-pixel text-xs text-pluit-blue">&gt;</span>
+          <span className="font-pixel text-xs text-white">FREE</span>
+          <span className="font-pixel text-xs text-pluit-blue">— 5 GB</span>
         </div>
-        <p className="text-xs text-pluit-blue/30 font-pixel">BILLING COMING SOON</p>
+        <p className="text-xs text-pluit-blue/40 font-pixel leading-relaxed">
+          EVERY ACCOUNT GETS 5 GB FREE. NO PLANS, NO PAYWALLS — JUST YOUR VAULT.
+        </p>
       </PixelCard>
 
       {/* Row 4: Change Password + Danger Zone side by side */}

@@ -125,37 +125,6 @@ export default function LandingPage() {
     },
   ]
 
-  const plans = [
-    {
-      name: 'FREE',
-      storage: '5 GB',
-      price: '$0',
-      features: ['5 GB storage', '10 AI calls / mo', 'Smart search', 'Folder organization'],
-      popular: false,
-    },
-    {
-      name: 'PERSONAL',
-      storage: '50 GB',
-      price: '$5',
-      features: ['50 GB storage', 'Unlimited AI calls', 'Smart search', 'Priority uploads'],
-      popular: true,
-    },
-    {
-      name: 'PRO',
-      storage: '200 GB',
-      price: '$12',
-      features: ['200 GB storage', 'Unlimited AI calls', 'Smart search', 'Team sharing'],
-      popular: false,
-    },
-    {
-      name: 'BUSINESS',
-      storage: '1 TB',
-      price: '$30',
-      features: ['1 TB storage', 'Unlimited AI calls', 'Smart search', 'Admin controls'],
-      popular: false,
-    },
-  ]
-
   return (
     <div className="min-h-screen flex flex-col">
 
@@ -170,8 +139,8 @@ export default function LandingPage() {
           <Link href="#capabilities" className="hidden md:block font-pixel text-[9px] text-pluit-blue/60 hover:text-pluit-blue transition-colors">
             CAPABILITIES
           </Link>
-          <Link href="#pricing" className="hidden md:block font-pixel text-[9px] text-pluit-blue/60 hover:text-pluit-blue transition-colors">
-            PRICING
+          <Link href="#storage" className="hidden md:block font-pixel text-[9px] text-pluit-blue/60 hover:text-pluit-blue transition-colors">
+            STORAGE
           </Link>
           <Link href="/login">
             <PixelButton variant="secondary" className="text-[10px] md:text-xs px-3 py-1.5 md:px-4 md:py-2">LOGIN</PixelButton>
@@ -242,53 +211,34 @@ export default function LandingPage() {
 
       <PixelDivider />
 
-      {/* ── Pricing ── */}
-      <section id="pricing" className="px-6 py-20 max-w-5xl mx-auto w-full">
+      {/* ── Storage ── */}
+      <section id="storage" className="px-6 py-20 max-w-5xl mx-auto w-full">
         <div className="text-center mb-12 space-y-2">
-          <div className="font-pixel text-[8px] text-pluit-blue/40 tracking-widest">{'> PRICING'}</div>
-          <h2 className="font-pixel text-pluit-blue text-xs">PICK YOUR PLAN</h2>
+          <div className="font-pixel text-[8px] text-pluit-blue/40 tracking-widest">{'> STORAGE'}</div>
+          <h2 className="font-pixel text-pluit-blue text-xs">FREE, ON THE HOUSE</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {plans.map(p => (
-            <div
-              key={p.name}
-              className={`relative p-5 border-2 space-y-4 flex flex-col transition-all ${
-                p.popular
-                  ? 'border-pluit-blue bg-pluit-blue/10 shadow-[0_0_24px_rgba(137,207,240,0.2)]'
-                  : 'border-pluit-blue/25 bg-black/70 hover:border-pluit-blue/50'
-              }`}
-            >
-              {p.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-pluit-blue text-black font-pixel text-[7px] px-2 py-0.5 whitespace-nowrap">
-                  POPULAR
-                </div>
-              )}
-              <div className="font-pixel text-xs text-pluit-cyan">{p.name}</div>
-              <div className="font-pixel text-white text-2xl leading-none">
-                {p.price}
-                <span className="text-xs text-pluit-blue/60">/mo</span>
-              </div>
-              <div className="border-t border-pluit-blue/20 pt-3 space-y-2 flex-1">
-                {p.features.map(feat => (
-                  <div key={feat} className="flex items-start gap-2 text-xs text-white/70">
-                    <Check />
-                    <span>{feat}</span>
-                  </div>
-                ))}
-              </div>
-              <Link href="/signup" className="block mt-2">
-                <PixelButton
-                  variant={p.popular ? 'primary' : 'secondary'}
-                  className="w-full text-xs"
-                >
-                  {p.price === '$0' ? 'START FREE' : 'GET STARTED'}
-                </PixelButton>
-              </Link>
+        <div className="max-w-md mx-auto">
+          <div className="relative p-8 border-2 border-pluit-blue bg-pluit-blue/10 shadow-[0_0_24px_rgba(137,207,240,0.2)] space-y-5 text-center">
+            <div className="font-pixel text-xs text-pluit-cyan">YOUR VAULT</div>
+            <div className="font-pixel text-white text-4xl leading-none">
+              5 GB
+              <span className="block mt-2 text-xs text-pluit-blue/60">FREE FOREVER</span>
             </div>
-          ))}
+            <div className="border-t border-pluit-blue/20 pt-4 space-y-2 text-left max-w-[15rem] mx-auto">
+              {['5 GB of storage', 'AI-powered search', 'Chat with your files', 'Folder organization', 'No credit card, no billing'].map(feat => (
+                <div key={feat} className="flex items-start gap-2 text-xs text-white/70">
+                  <Check />
+                  <span>{feat}</span>
+                </div>
+              ))}
+            </div>
+            <Link href="/signup" className="block">
+              <PixelButton className="w-full text-xs">CREATE FREE ACCOUNT →</PixelButton>
+            </Link>
+          </div>
         </div>
         <p className="text-center text-[10px] text-pluit-blue/30 mt-8 font-pixel">
-          BILLING COMING SOON — SIGN UP FREE TODAY.
+          NO PLANS. NO PAYWALLS. JUST A CLEAN PLACE FOR YOUR FILES.
         </p>
       </section>
 
@@ -302,7 +252,7 @@ export default function LandingPage() {
             YOUR VAULT AWAITS
           </h2>
           <p className="text-white/55 text-sm leading-relaxed max-w-sm mx-auto">
-            Join Pluit.cloud. Store, search, and talk to your files — starting at $0.
+            Join Pluit.cloud. Store, search, and talk to your files — 5 GB free, no strings attached.
           </p>
           <Link href="/signup">
             <PixelButton className="text-sm px-10 py-3">
