@@ -3,6 +3,7 @@ import { PixelButton } from '@/components/ui/pixel-button'
 import { PixelCard } from '@/components/ui/pixel-card'
 import { PixelCloudLogo } from '@/components/ui/pixel-cloud-logo'
 import { RainText } from '@/components/landing/rain-text'
+import { InstallPrompt } from '@/components/landing/install-prompt'
 import { WaterPoolCanvas } from '@/components/rain/water-pool-canvas'
 
 // ─── Pixel Art Feature Icons ──────────────────────────────────────────────────
@@ -260,6 +261,20 @@ export default function LandingPage() {
             </PixelButton>
           </Link>
         </PixelCard>
+      </section>
+
+      <PixelDivider />
+
+      {/* ── Install App ── */}
+      <section id="install" className="px-6 py-20 max-w-5xl mx-auto w-full">
+        <div className="text-center mb-10 space-y-2">
+          <div className="font-pixel text-[8px] text-pluit-blue/40 tracking-widest">{'> GET THE APP'}</div>
+          <h2 className="font-pixel text-pluit-blue text-xs">TAKE PLUIT WITH YOU</h2>
+          <p className="text-white/50 text-xs max-w-sm mx-auto mt-2 leading-relaxed">
+            Install Pluit on your phone for instant access — no app store needed.
+          </p>
+        </div>
+        <InstallPrompt />
       </section>
 
       {/* ── Water Pool ── */}
